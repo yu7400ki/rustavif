@@ -4,3 +4,18 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+
+[build-dependencies]
+bindgen = "0.72"
+cmake = "0.1"
+
+[features]
+default = ["libyuv"]
+
+codec-aom   = []              # encoder+decoder
+codec-dav1d = []              # decoder
+codec-gav1  = []              # decoder
+codec-rav1e = []              # encoder
+codec-svt   = []              # encoder
+
+libyuv = []
