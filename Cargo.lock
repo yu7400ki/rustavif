@@ -3,5 +3,9 @@
 version = 4
 
 [[package]]
+name = "libavif-sys"
+version = "0.1.0"
+
+[[package]]
 name = "rustavif"
 version = "0.1.0"

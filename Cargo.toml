@@ -1,3 +1,7 @@
+[workspace]
+members = ["libavif-sys"]
+resolver = "3"
+
 [package]
 name = "rustavif"
 version = "0.1.0"
