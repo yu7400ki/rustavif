@@ -8,3 +8,14 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+libavif-sys = { path = "libavif-sys" }
+
+[features]
+default = ["codec-dav1d", "codec-rav1e"]
+
+# Codec features
+codec-aom = ["libavif-sys/codec-aom"]     # encoder+decoder
+codec-dav1d = ["libavif-sys/codec-dav1d"] # decoder
+codec-gav1 = ["libavif-sys/codec-gav1"]   # decoder
+codec-rav1e = ["libavif-sys/codec-rav1e"] # encoder
+codec-svt = ["libavif-sys/codec-svt"]     # encoder
