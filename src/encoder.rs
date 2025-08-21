@@ -29,7 +29,7 @@ pub enum EncoderCodecChoice {
 
 impl From<EncoderCodecChoice> for avifCodecChoice {
     fn from(choice: EncoderCodecChoice) -> Self {
-        choice as u32
+        choice as _
     }
 }
 

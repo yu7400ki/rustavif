@@ -118,7 +118,7 @@ impl From<avifResult> for AvifError {
             avifResult_AVIF_RESULT_ENCODE_GAIN_MAP_FAILED => AvifError::EncodeGainMapFailed,
             avifResult_AVIF_RESULT_DECODE_GAIN_MAP_FAILED => AvifError::DecodeGainMapFailed,
             avifResult_AVIF_RESULT_INVALID_TONE_MAPPED_IMAGE => AvifError::InvalidToneMappedImage,
-            other => AvifError::UnknownType(other),
+            other => AvifError::UnknownType(other as u32),
         }
     }
 }

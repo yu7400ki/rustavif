@@ -40,7 +40,7 @@ pub enum RgbFormat {
 
 impl From<RgbFormat> for avifRGBFormat {
     fn from(format: RgbFormat) -> Self {
-        format as u32
+        format as _
     }
 }
 
@@ -82,7 +82,7 @@ pub enum ChromaUpsampling {
 
 impl From<ChromaUpsampling> for avifChromaUpsampling {
     fn from(upsampling: ChromaUpsampling) -> Self {
-        upsampling as u32
+        upsampling as _
     }
 }
 
@@ -106,7 +106,7 @@ pub enum ChromaDownsampling {
 
 impl From<ChromaDownsampling> for avifChromaDownsampling {
     fn from(downsampling: ChromaDownsampling) -> Self {
-        downsampling as u32
+        downsampling as _
     }
 }
 

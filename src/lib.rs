@@ -78,7 +78,7 @@ pub enum PixelFormat {
 
 impl From<PixelFormat> for avifPixelFormat {
     fn from(format: PixelFormat) -> Self {
-        format as u32
+        format as _
     }
 }
 
@@ -248,7 +248,12 @@ impl Image {
     ///
     /// This must be called before writing pixel data to the image.
     pub fn allocate_planes(&mut self) -> Result<()> {
-        let result = unsafe { avifImageAllocatePlanes(self.inner, avifPlanesFlag_AVIF_PLANES_ALL) };
+        let result = unsafe {
+            avifImageAllocatePlanes(
+                self.inner,
+                avifPlanesFlag_AVIF_PLANES_ALL as avifPlanesFlags,
+            )
+        };
         if result != avifResult_AVIF_RESULT_OK {
             Err(AvifError::from(result))
         } else {
@@ -258,14 +263,25 @@ impl Image {
 
     /// Frees the memory used by the image planes.
     pub fn free_planes(&mut self) {
-        unsafe { avifImageFreePlanes(self.inner, avifPlanesFlag_AVIF_PLANES_ALL) };
+        unsafe {
+            avifImageFreePlanes(
+                self.inner,
+                avifPlanesFlag_AVIF_PLANES_ALL as avifPlanesFlags,
+            )
+        };
     }
 
     /// Transfers ownership of planes from this image to another image.
     ///
     /// After this operation, this image will have empty planes.
     pub fn steal_planes(&mut self, to_image: &mut Self) {
-        unsafe { avifImageStealPlanes(to_image.inner, self.inner, avifPlanesFlag_AVIF_PLANES_ALL) };
+        unsafe {
+            avifImageStealPlanes(
+                to_image.inner,
+                self.inner,
+                avifPlanesFlag_AVIF_PLANES_ALL as avifPlanesFlags,
+            )
+        };
     }
 
     /// Creates a copy of this image.
@@ -273,8 +289,13 @@ impl Image {
     /// This creates a new image with the same dimensions and copies all pixel data.
     pub fn copy(&self) -> Result<Self> {
         let copy = Self::new(self.width(), self.height(), self.depth(), self.yuv_format())?;
-        let result =
-            unsafe { avifImageCopy(copy.inner, self.inner, avifPlanesFlag_AVIF_PLANES_ALL) };
+        let result = unsafe {
+            avifImageCopy(
+                copy.inner,
+                self.inner,
+                avifPlanesFlag_AVIF_PLANES_ALL as avifPlanesFlags,
+            )
+        };
         if result != avifResult_AVIF_RESULT_OK {
             Err(AvifError::from(result))
         } else {
