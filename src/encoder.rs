@@ -149,7 +149,7 @@ impl Encoder {
     /// * `count` - Number of repetitions (0 = infinite loop)
     pub fn set_repetition_count(&mut self, count: u32) {
         unsafe {
-            (*self.inner).repetitionCount = if count == 0 { -1 } else { count as i32 };
+            (*self.inner).repetitionCount = (count as i32) - 1;
         }
     }
 
